@@ -15,3 +15,11 @@
     name: mysqld
     state: started
     enabled: yes
+
+- name: Changing MySQL root password
+  mysql_user:
+    name: bear
+    password: {{ mysql_password }}
+    host: localhost
+    priv: '*.*:ALL'
+    state: absent
