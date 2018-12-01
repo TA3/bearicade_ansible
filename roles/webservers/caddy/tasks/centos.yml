@@ -10,7 +10,7 @@
     mode: a+x
 
 - name: Install Caddy (Personal License with CGI and forward-proxy)
-  shell: /tmp/caddy.sh -s personal http.cgi,http.forwardproxy
+  command: "/tmp/caddy.sh -s personal http.cgi,http.forwardproxy"
 
 - name: Remove Caddy Installer
   file: path=/tmp/caddy.sh state=absent
