@@ -5,7 +5,9 @@
     dest: /tmp/caddy.sh
 
 - name: Prepare Caddy to be executable 
-  shell: chmod +x /tmp/caddy.sh
+  - file:
+    path: /tmp/caddy.sh
+    mode: a+x
 
 - name: Install Caddy (Personal License with CGI and forward-proxy)
   shell: /tmp/caddy.sh -s personal http.cgi,http.forwardproxy
