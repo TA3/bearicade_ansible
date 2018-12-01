@@ -16,13 +16,13 @@
     state: started
     enabled: yes
 
-- set_fact:
-    MySQL_temp_password: "{{ grep 'temporary password' /var/log/mysqld.log | grep -oE '[^ ]+$' | tail -1 }}"
+- shell: grep 'temporary password' /var/log/mysqld.log | grep -oE '[^ ]+$' | tail -1
+  register: MySQL_temp_password
 
 - name: Changing MySQL root password
   mysql_user:
     login_user: root
-    login_password: "{{ MySQL_temp_password }}"
+    login_password: "{{ MySQL_temp_password.stdout }}"
     name: bear
     password: "{{ mysql_password }}"
     host: localhost
