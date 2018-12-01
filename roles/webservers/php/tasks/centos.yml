@@ -21,7 +21,6 @@
     option: enabled
     value: 1
 
-
 - name: Install PHP and essentials 
   yum:
     name: "{{ packages }}"

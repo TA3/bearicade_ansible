@@ -3,5 +3,6 @@
   vars_files: 
     - ./config.yml
   roles:
-    - webservers/caddy
-    - webservers/php
+   # - webservers/caddy
+   # - webservers/php
+    - webservers/mysql
