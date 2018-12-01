@@ -1,0 +1,11 @@
+---
+# This task installs and enables apache on webservers
+- name: ensure Caddy is installed
+    yum: 
+      pkg=caddy 
+      state=latest
+- name: Creates bearicade directory in /var
+    file: path=/var/bearicade state=directory
+- git:
+    repo: 'https://github.com/TA3/bearicade.git'
+    dest: /var/bearicade
