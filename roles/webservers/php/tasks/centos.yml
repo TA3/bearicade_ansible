@@ -15,8 +15,12 @@
     state: present
 
 - name: Enable PHP repository
-  yum:
-    enablerepo: remi-php72
+  ini_file:
+    path: /etc/yum.repos.d/remi-php72.repo
+    section: remi-php72
+    option: enabled
+    value: 1
+
 
 - name: Install PHP and essentials 
   yum:
