@@ -22,7 +22,7 @@
 - name: Changing MySQL root password
   mysql_user:
     login_user: root
-    login_password: {{ MySQL_temp_password }}
+    login_password: "{{ MySQL_temp_password }}"
     name: bear
     password: "{{ mysql_password }}"
     host: localhost
