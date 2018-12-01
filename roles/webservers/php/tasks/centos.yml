@@ -15,9 +15,8 @@
     state: present
 
 - name: Enable PHP repository
-  yum_repository:
-    name: remi-php72
-    enabled: yes
+  yum:
+    enablerepo: remi-php72
 
 - name: Install PHP and essentials 
   yum:
