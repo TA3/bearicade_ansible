@@ -4,3 +4,4 @@
     - ./config.yml
   roles:
     - webservers/caddy
+    - webservers/php

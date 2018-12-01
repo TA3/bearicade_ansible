@@ -1,0 +1,35 @@
+---
+
+- name: Install epel-release and yum-utils
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - epel-release
+    - yum-utils
+
+- name: Install PHP repository
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+- name: Enable PHP repository
+  yum_repository:
+    name: remi-php72
+    enabled: yes
+
+- name: Install PHP and essentials 
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - php
+    - php-common
+    - php-opcache
+    - php-mcrypt
+    - php-cli
+    - php-gd
+    - php-curl
+    - php-mysqlnd
