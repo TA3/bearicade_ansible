@@ -5,7 +5,7 @@
     dest: /tmp/caddy.sh
 
 - name: Prepare Caddy to be executable 
-  - file:
+  file:
     path: /tmp/caddy.sh
     mode: a+x
 
