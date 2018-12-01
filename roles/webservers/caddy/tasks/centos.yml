@@ -1,0 +1,41 @@
+---
+- name: Download Caddy installer
+  get_url: 
+    url: https://getcaddy.com 
+    dest: /tmp/caddy.sh
+
+- name: Prepare Caddy to be executable 
+  shell: chmod +x /tmp/caddy.sh
+
+- name: Install Caddy (Personal License with CGI and forward-proxy)
+  shell: /tmp/caddy.sh -s personal http.cgi,http.forwardproxy
+
+- name: Remove Caddy Installer
+  file: path=/tmp/caddy.sh state=absent
+
+- name: Give the caddy binary the ability to bind to privileged ports (e.g. 80, 443) as a non-root user
+  shell: sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
+    
+- name: Create Caddy group (www-data)
+  group:
+    name: "www-data"
+    system: true
+    state: present
+- name: Create Caddy user (www-data)
+  user:
+    name: "www-data"
+    group: "www-data"
+    home: "{{ installation_directory }}"
+    shell: "/usr/sbin/nologin"
+    system: yes
+
+- name: Download Caddy systemd file
+  get_url: 
+    url: https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service 
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: 0640
+    
+- name: Force systemd to reread configs
+  systemd: daemon_reload=yes
