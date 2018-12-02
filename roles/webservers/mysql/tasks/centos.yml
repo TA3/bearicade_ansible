@@ -1,4 +1,7 @@
 ---
+- name: Install PyMySQL via pip
+  pip:
+    name: PyMySQL
 
 - name: Install MySQL repository
   yum:
