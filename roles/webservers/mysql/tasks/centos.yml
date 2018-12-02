@@ -35,8 +35,7 @@
     name: mysqld
     state: restarted
 
-
-- name: Try another way of chaning password (mysqladmin) due to expiration of temp password
+- name: Change root password
   shell: mysqladmin -u root -p'{{ MySQL_temp_password.stdout }}' password '{{ mysql_password }}'
 
 - name: Create MySQL bear user
