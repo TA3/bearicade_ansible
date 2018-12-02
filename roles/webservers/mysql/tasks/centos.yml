@@ -19,12 +19,35 @@
 - shell: grep 'temporary password' /var/log/mysqld.log | grep -oE '[^ ]+$' | tail -1
   register: MySQL_temp_password
 
+- name: Disable MySQL password Validation
+  ini_file:
+    path: /etc/my.cnf
+    section: mysqld
+    option: validate_password_policy
+    value: LOW
+
+
+- name: Restart mysqld service
+  service:
+    name: mysqld
+    state: restarted
+
 - name: Changing MySQL root password
   mysql_user:
     login_user: root
     login_password: "{{ MySQL_temp_password.stdout }}"
+    name: root
+    password: "{{ mysql_password }}"
+    host: localhost
+    priv: '*.*:ALL'
+    state: present
+
+- name: Create MySQL bear user
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_password }}"
     name: bear
     password: "{{ mysql_password }}"
     host: localhost
     priv: '*.*:ALL'
-    state: absent
+    state: present
