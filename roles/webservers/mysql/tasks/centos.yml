@@ -47,10 +47,15 @@
   register: command_result
   ignore_errors: True
 
+- name: fail the play if the previous command did not succeed
+  fail:
+    msg: "{{ command_result.stderr }}"
+  when: "'expired' in command_result.stderr"
+
 - name: Try another way of chaning password (mysqladmin) due to expiration of temp password
   shell: mysqladmin -u root -p'{{ MySQL_temp_password.stdout }}' password '{{ mysql_password }}'
   when: "'expired' in command_result.stderr"
-  
+
 - name: Create MySQL bear user
   mysql_user:
     login_user: root
