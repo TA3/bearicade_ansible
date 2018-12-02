@@ -1,0 +1,9 @@
+<?php
+$dbh = new PDO("mysql:host=127.0.0.1;port=3306;dbname=auth", "bear", "{{ mysql_password }}");
+
+$config = new PHPAuth\Config($dbh);
+//var_dump($config);
+$auth   = new PHPAuth\Auth($dbh, $config);
+
+$tfa = new RobThree\Auth\TwoFactorAuth('{{ tfa_name }}');
+?>

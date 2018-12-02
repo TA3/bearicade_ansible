@@ -1,0 +1,25 @@
+---
+
+- name: Clone bearicade from Github (TA3/bearicade)
+  git:
+    repo: '{{ bearicade_git }}'
+    dest: '{{ installation_directory }}'
+    accept_hostkey: yes
+    key_file: '{{ private_key_path }}'
+
+
+- name: Copy dashboard database
+  template:
+    src: /files/config.j2
+    dest: "{{ installation_directory }}/config.php"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0600
+
+- name: Copy login database
+  template:
+    src: /files/loginConfig.j2
+    dest: "{{ installation_directory }}/login/loginConfig.php"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0600

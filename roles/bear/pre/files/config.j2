@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+
+<?php
+$c_host = "127.0.0.1";
+$c_user = "root";
+$c_password = "{{ mysql_password }}";
+$c_dbname = "admin";
+$c_port = "3306";
+$conn = new mysqli($c_host, $c_user, $c_password, $c_dbname, $c_port);
+
+$browserRecorderLimit = {{ browser_recorder_limit }}; // number of records
+$loginRecorderDaysLimit = {{ login_recorder_days_limit }}; // in days
+
+
+if (isset($_COOKIE['id'])) {
+    $id = $_COOKIE['id'];
+}
+else {
+    $id = 1;
+}
+?>

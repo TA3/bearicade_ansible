@@ -20,13 +20,13 @@
     
 - name: Create Caddy group (www-data)
   group:
-    name: "www-data"
+    name: "{{ web_group }}"
     system: true
     state: present
 - name: Create Caddy user (www-data)
   user:
-    name: "www-data"
-    group: "www-data"
+    name: "{{ web_user }}"
+    group: "{{ web_group }}"
     home: "{{ installation_directory }}"
     shell: "/usr/sbin/nologin"
     system: yes

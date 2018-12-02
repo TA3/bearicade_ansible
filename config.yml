@@ -1,8 +1,11 @@
 #--------------------------------------------------------------------
 #--General Setup
 #--------------------------------------------------------------------
-caddy: true # Only caddy supported atm
 installation_directory: /var/bearicade
+bearicade_git: git@github.com:TA3/bearicade.git
+private_key_path: ~/.ssh/id_rsa
+web_user: www-data
+web_group: www-data
 #--------------------------------------------------------------------
 #--HTTP(s) Setup
 #--------------------------------------------------------------------
@@ -12,9 +15,10 @@ https_port: 443
 #--------------------------------------------------------------------
 #--MySQL Setup
 #--------------------------------------------------------------------
-mysql_port: 5190
 mysql_password: Password@123
 #--------------------------------------------------------------------
-#--Caddy Server Setup
+#--Bear Server Settings
 #--------------------------------------------------------------------
-
+tfa_name: TA3 HPC
+browser_recorder_limit: 9
+login_recorder_days_limit: 180
