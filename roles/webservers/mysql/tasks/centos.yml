@@ -44,7 +44,13 @@
     host: localhost
     priv: '*.*:ALL'
     state: present
+  register: command_result
+  ignore_errors: True
 
+- name: Try another way of chaning password (mysqladmin) due to expiration of temp password
+  shell: mysqladmin -u root -p'{{ MySQL_temp_password.stdout }}' password '{{ mysql_password }}'
+  when: "'expired' in command_result.stderr"
+  
 - name: Create MySQL bear user
   mysql_user:
     login_user: root
