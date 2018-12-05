@@ -32,6 +32,8 @@
   mysql_db:
     name: admin
     state: present
+    login_user: bear
+    login_password: "{{ mysql_password }}"
 
 - name: Import Admin SQL database templates
   mysql_db:
@@ -45,6 +47,8 @@
   mysql_db:
     name: auth
     state: present
+    login_user: bear
+    login_password: "{{ mysql_password }}"
 
 - name: Import Authentication SQL database templates
   mysql_db:
@@ -58,7 +62,9 @@
   mysql_db:
     name: bearicade
     state: present
-
+    login_user: bear
+    login_password: "{{ mysql_password }}"
+    
 - name: Import Bearicade SQL database templates
   mysql_db:
     state: import
