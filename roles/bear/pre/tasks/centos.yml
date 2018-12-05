@@ -14,7 +14,7 @@
 
 - name: Copy dashboard database
   template:
-    src: /files/config.j2
+    src: ../files/config.j2
     dest: "{{ installation_directory }}/config.php"
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
@@ -22,7 +22,7 @@
 
 - name: Copy login database
   template:
-    src: /files/loginConfig.j2
+    src: ../files/loginConfig.j2
     dest: "{{ installation_directory }}/login/loginConfig.php"
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
