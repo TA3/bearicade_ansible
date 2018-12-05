@@ -28,14 +28,24 @@
     group: "{{ web_group }}"
     mode: 0600
 
+- name: Create Admin database
+  mysql_db:
+    name: admin
+    state: present
+
 - name: Import Admin SQL database templates
   mysql_db:
     state: import
-    name: all
+    name: admin
     target: /tmp/bearicade/db_import/admin.sql
     login_user: bear
     login_password: "{{ mysql_password }}"
-    
+
+- name: Create Authentication database
+  mysql_db:
+    name: auth
+    state: present
+
 - name: Import Authentication SQL database templates
   mysql_db:
     state: import
@@ -43,6 +53,11 @@
     target: /tmp/bearicade/db_import/auth.sql
     login_user: bear
     login_password: "{{ mysql_password }}"
+
+- name: Create Bearicade database
+  mysql_db:
+    name: bearicade
+    state: present
 
 - name: Import Bearicade SQL database templates
   mysql_db:
