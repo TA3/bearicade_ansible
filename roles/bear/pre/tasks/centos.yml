@@ -9,7 +9,7 @@
 
 - name: Copy bearicade files
   synchronize:
-    src: /tmp/bearicade
+    src: /tmp/bearicade/
     dest: "{{ installation_directory }}"
 
 - name: Copy dashboard database
