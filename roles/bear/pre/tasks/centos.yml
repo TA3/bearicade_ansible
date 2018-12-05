@@ -27,3 +27,21 @@
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
     mode: 0600
+
+- name: Import Admin SQL database templates
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/bearicade/db_import/admin.sql
+
+- name: Import Authentication SQL database templates
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/bearicade/db_import/auth.sql
+
+- name: Import Bearicade SQL database templates
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/bearicade/db_import/bearicade.sql
