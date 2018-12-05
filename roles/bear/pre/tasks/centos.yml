@@ -23,3 +23,4 @@
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
     mode: 0600
+    force: yes
