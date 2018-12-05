@@ -53,7 +53,7 @@
 - name: Import Authentication SQL database templates
   mysql_db:
     state: import
-    name: all
+    name: auth
     target: /tmp/bearicade/db_import/auth.sql
     login_user: bear
     login_password: "{{ mysql_password }}"
@@ -64,11 +64,11 @@
     state: present
     login_user: bear
     login_password: "{{ mysql_password }}"
-    
+
 - name: Import Bearicade SQL database templates
   mysql_db:
     state: import
-    name: all
+    name: bearicade
     target: /tmp/bearicade/db_import/bearicade.sql
     login_user: bear
     login_password: "{{ mysql_password }}"
