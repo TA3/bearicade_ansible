@@ -18,7 +18,7 @@
     dest: "{{ installation_directory }}/config.php"
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
-    mode: 0600
+    mode: 0644
 
 - name: Copy login database
   template:
@@ -26,7 +26,7 @@
     dest: "{{ installation_directory }}/access/loginConfig.php"
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
-    mode: 0600
+    mode: 0644
 
 - name: Create Admin database
   mysql_db:
