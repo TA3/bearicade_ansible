@@ -23,7 +23,7 @@
 - name: Copy login database
   template:
     src: ../files/loginConfig.j2
-    dest: "{{ installation_directory }}/login/loginConfig.php"
+    dest: "{{ installation_directory }}/access/loginConfig.php"
     owner: "{{ web_user }}"
     group: "{{ web_group }}"
     mode: 0600
