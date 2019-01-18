@@ -28,7 +28,7 @@
   ini_file:
     path: /etc/my.cnf
     section: mysqld
-    option: validate_password.policy
+    option: validate_password_policy
     value: LOW
 
 
