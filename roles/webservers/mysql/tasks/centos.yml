@@ -8,19 +8,11 @@
     name: https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
     state: present
 
-- name: Disable version 8.0 MySQL 
-  yum:
-    name: mysql80-community
-    disablerepo
-
-- name: Enable version 5.7 MySQL 
-  yum:
-    name: mysql57-community
-    enablerepo
-
 - name: Install MySQL 
   yum:
     name: mysql-community-server
+    disablerepo: mysql80-community
+    enablerepo: mysql57-community
     state: latest
 
 - name: Make sure MySQL service is running and enabled
